@@ -18,8 +18,15 @@ fork {
 
 		msg.postln; //print message for debugging
 
-		{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:sleeptime-0.01), doneAction:2)}.play;
+		fork {
 
+			0.25.wait;
+
+		{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:sleeptime-0.01), doneAction:2)}.play;
+			p.sendMsg("/"++"Jayson"++"/ping" , p.name);
+
+
+		}
 
 		/*fork {
 			var nextpeer;
@@ -45,11 +52,14 @@ fork {
     peers = p.getPeers();
     if (peers.size > 0,
         {
-				peer = peers[0];
+			peer = "Jayson";
 				("Sending initial ping to:"+peer).postln;
 				("/"++peer++"/ping").postln;
+			{SinOsc.ar(freq:1000)*0.5*EnvGen.kr(Env.perc(releaseTime:1-0.01), doneAction:2)}.play;
 
-				p.sendMsg("/"++peer++"/ping" , p.name)
+				p.sendMsg("/"++peer++"/ping" , p.name);
+
+
         },
         {"Error: No other peers in the network"}
     )
