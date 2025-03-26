@@ -29,7 +29,7 @@ x.free;
 fork{
 	p = P2PSC();
 	p.sync;
-	p.setName("Laura");
+	p.setName("Jacob");
 	p.sync;
 }
 )
@@ -61,7 +61,7 @@ slider = Slider2D(win, Rect(20, 20, 260, 260)).background_(Color.gray).action_({
 	);
 
 	[freq, temp2].postln; // Post frequency and temp2 values
-	p.sendMsg("/" ++ "Jacob" ++ "/ping", freq, temp2);
+	p.sendMsg("/" ++ "Orlando" ++ "/ping", freq, temp2);
 });
 
 fixedx = 0.2;
@@ -111,7 +111,7 @@ slider = Slider2D(win, Rect(20, 20, 260, 260)).background_(Color.gray).action_({
 	);
 
 	[temp, temp2].postln;
-	p.sendMsg("/" ++ "Jacob" ++ "/ping", temp, temp2);
+	p.sendMsg("/" ++ "Orlando" ++ "/ping", temp, temp2);
 });
 
 fixedx = 0.2;
@@ -144,7 +144,7 @@ slider = Slider2D(win, Rect(20, 20, 260, 260)).background_(Color.gray).action_({
 
 	temp2.postln;
 
-	p.sendMsg("/" ++ "Jayson" ++ "/ping", temp, temp2);
+	p.sendMsg("/" ++ "Orlando" ++ "/ping", temp, temp2);
 });
 )
 
@@ -172,7 +172,7 @@ fork {
 
 		{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:sleeptime-0.01), doneAction:2)}.play;
 
-			p.sendMsg("/" ++ "Jacob" ++ "/ping", freq, time);
+			p.sendMsg("/" ++ "Orlando" ++ "/ping", freq, time);
 
 		}
 
