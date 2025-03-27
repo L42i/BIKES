@@ -60,7 +60,13 @@ slider = Slider2D(win, Rect(20, 20, 260, 260)).background_(Color.gray).action_({
 	// Map x-position to a value (as before)
 	temp2 = sld.x.linexp(0, 1, 1, 5);
 
-	if (sld.x<= 0.25, {temp2 = 0.5;},
+
+	if (sld.x<= 0.25, {
+		"here".postln;
+		temp2 = 0.5;
+
+
+	},
 		{if (sld.x<= 0.5, {temp2 = 1;},
 			{if (sld.x<= 0.75, {temp2 = 1.5;},
 				{if (sld.x<= 1, {temp2 = 2;})}
@@ -68,7 +74,9 @@ slider = Slider2D(win, Rect(20, 20, 260, 260)).background_(Color.gray).action_({
 		)}
 	);
 
-	[freq, temp2].postln; // Post frequency and temp2 values
+		(temp2).postln;
+
+	//[freq, temp2].postln; // Post frequency and temp2 values
 	p.sendMsg("/" ++ ~peerNode ++ "/ping", freq, temp2);
 });
 
@@ -106,8 +114,8 @@ userView = UserView(win, slider.bounds)
 fork {
 	p.addPath({ |msg|
 		var sleeptime = 1;
-				var freq =(msg[1]).asInteger;
-				var time =(msg[2]).asInteger;
+				var freq =(msg[1]).asFloat;
+				var time =(msg[2]).asFloat;
 
 
 		msg.postln; //print message for debugging
