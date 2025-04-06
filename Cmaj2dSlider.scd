@@ -155,10 +155,6 @@ slider = Slider2D(win, Rect(20, 20, 260, 260)).background_(Color.gray).action_({
 //STEP 2: RECEIVER
 (
 fork {
-	p = P2PSC();
-	p.sync;
-	p.setName("Laura"); // set your name accordingly
-	p.sync;
 	p.addPath({ |msg|
 		var sleeptime = 1;
 				var freq =(msg[1]).asInteger;
