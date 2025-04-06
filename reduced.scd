@@ -1,14 +1,14 @@
 s.waitForBoot({
 
 	{
-		var myNode = "Jacob";
-		var peerNode = "Jayson";
+		~myNode = "Jacob";
+		~peerNode = "Laura";
 
 
 		fork{
 			p = P2PSC();
 			p.sync;
-			p.setName(myNode);
+			p.setName(~myNode);
 			p.sync;
 		}
 	}.();
@@ -106,9 +106,12 @@ s.waitForBoot({
 	},"/ping");
 		};
 
-}.();
+	}.();
 
-
+	{
+	~myNode.free;
+	~peerNode.free;
+	}.();
 
 
 
