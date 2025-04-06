@@ -1,14 +1,14 @@
 s.waitForBoot({
 
 	{
-		~myNode = "Jacob";
-		~peerNode = "Laura";
+		//var myNode = "Jacob";
+		//var peerNode = "Laura";
 
 
 		fork{
 			p = P2PSC();
 			p.sync;
-			p.setName(~myNode);
+			p.setName("Jacob");
 			p.sync;
 		}
 	}.();
@@ -54,7 +54,7 @@ s.waitForBoot({
 
 			[freq, temp2].postln; // Post frequency and temp2 values
 			{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:temp2-0.01), doneAction:2)}.play;
-			p.sendMsg("/" ++ ~peerNode ++ "/ping", freq, temp2);
+			p.sendMsg("/" ++ "Laura" ++ "/ping", freq, temp2);
 		});
 
 		fixedx = 0.2;
@@ -89,17 +89,17 @@ s.waitForBoot({
 	p.addPath({ |msg|
 		var sleeptime = 1;
 				var freq =(msg[1]).asFloat;
-				var time =(msg[2]).asFloat;
+				var temp2 =(msg[2]).asFloat;
 
 
 		msg.postln; //print message for debugging
 
 		fork{
-			time.wait;
+			temp2.wait;
 
 		{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:sleeptime-0.01), doneAction:2)}.play;
 
-			p.sendMsg("/" ++ ~peerNode ++ "/ping", freq, time);
+					p.sendMsg("/" ++ "Laura" ++ "/ping", freq, temp2);
 
 		}
 
@@ -108,10 +108,7 @@ s.waitForBoot({
 
 	}.();
 
-	{
-	~myNode.free;
-	~peerNode.free;
-	}.();
+
 
 
 
