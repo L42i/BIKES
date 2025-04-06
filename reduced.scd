@@ -1,6 +1,17 @@
 s.waitForBoot({
 
-	var x;
+	{
+		var myNode = "Orlando";
+
+		fork
+		{
+			p = P2PSC();
+			p.sync;
+			p.setName(myNode);
+			p.sync;
+		}
+
+	}.();
 
    // a sine oscillator node with one parameter
    //var x = {|freq=440| Out.ar(0, SinOsc.ar(freq))}.play;
