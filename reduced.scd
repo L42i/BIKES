@@ -2,6 +2,7 @@ s.waitForBoot({
 
 	{
 		var myNode = "Jacob";
+		var peerNode = "Jayson";
 
 
 		fork{
@@ -53,7 +54,7 @@ s.waitForBoot({
 
 			[freq, temp2].postln; // Post frequency and temp2 values
 			{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:temp2-0.01), doneAction:2)}.play;
-			p.sendMsg("/" ++ "Laura" ++ "/ping", freq, temp2);
+			p.sendMsg("/" ++ ~peerNode ++ "/ping", freq, temp2);
 		});
 
 		fixedx = 0.2;
@@ -82,6 +83,30 @@ s.waitForBoot({
 			Pen.stroke; // Stroke the horizontal lines
 		});
 	}.();
+
+	{
+	fork {
+	p.addPath({ |msg|
+		var sleeptime = 1;
+				var freq =(msg[1]).asFloat;
+				var time =(msg[2]).asFloat;
+
+
+		msg.postln; //print message for debugging
+
+		fork{
+			time.wait;
+
+		{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:sleeptime-0.01), doneAction:2)}.play;
+
+			p.sendMsg("/" ++ ~peerNode ++ "/ping", freq, time);
+
+		}
+
+	},"/ping");
+		};
+
+}.();
 
 
 
