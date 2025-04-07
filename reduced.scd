@@ -10,8 +10,30 @@ s.waitForBoot({
 			p.sync;
 			p.setName("Jacob");
 			p.sync;
+
+			p.addPath({ |msg|
+		var sleeptime = 1;
+				var freq =(msg[1]).asFloat;
+				var temp2 =(msg[2]).asFloat;
+
+
+		msg.postln; //print message for debugging
+
+		fork{
+			temp2.wait;
+
+		{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:sleeptime-0.01), doneAction:2)}.play;
+
+					p.sendMsg("/" ++ "Laura" ++ "/ping", freq, temp2);
+
+		}
+
+	},"/ping");
+
 		}
 	}.();
+
+
 
 
    // a sine oscillator node with one parameter
@@ -84,29 +106,12 @@ s.waitForBoot({
 		});
 	}.();
 
-	{
-	fork {
-	p.addPath({ |msg|
-		var sleeptime = 1;
-				var freq =(msg[1]).asFloat;
-				var temp2 =(msg[2]).asFloat;
 
 
-		msg.postln; //print message for debugging
 
-		fork{
-			temp2.wait;
 
-		{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:sleeptime-0.01), doneAction:2)}.play;
 
-					p.sendMsg("/" ++ "Laura" ++ "/ping", freq, temp2);
 
-		}
-
-	},"/ping");
-		};
-
-	}.();
 
 
 
