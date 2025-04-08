@@ -37,17 +37,21 @@ s.meter;
 
 
 (
+var synth;
 r = Routine {
-	    { SinOsc.ar(200) }.play;
-        200.yield;
-	    { SinOsc.ar(400) }.play;
-        400.yield;
+	    //{ SinOsc.ar(200) }.play;
+        //200.yield;
+	    //{ SinOsc.ar(400) }.play;
+        //400.yield;
 		//{ SinOsc.ar(600) }.play;
         //200.idle(6);
-	    { SinOsc.ar(600) }.play;
-        600.yield;
-	    { SinOsc.ar(800) }.play;
-        800.yieldAndReset;
+	    //{ SinOsc.ar(600) }.play;
+        //600.yield;
+	    synth =  {SinOsc.ar(800) }.play;
+	    1.wait;
+	    synth.free;
+	"".yieldAndReset;
+        //800.yieldAndReset;
 
 };
 
