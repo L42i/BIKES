@@ -29,7 +29,7 @@ v.gui;
 ~sampleLayerBuffer = Buffer.read(s, thisProcess.nowExecutingPath.dirname +/+ "stems/clocks.wav");
 
 
-//{Out.ar(0, PlayBuf.ar(2, ~baseLayerBuffer, loop: 1));}.play;
+{Out.ar(0, PlayBuf.ar(2, ~baseLayerBuffer, loop: 1));}.play;
 
 )
 
@@ -58,5 +58,18 @@ SynthDef(\sampleLayer, {
 
 (
 ~sampleLayerSynths = [0, 2].collect { |i| Synth(\sampleLayer, [\buf, ~sampleLayerBuffer,\out, i,])};
+
+)
+
+
+(
+n=EZSlider(nil, 300@42,"  pitchShift pitchRatio  ", ControlSpec.new(0, 2.5, step:0.1));
+
+n.action_({ |ez| ~sampleLayerSynths.do { |synth| synth.set(\pitchRatio, ez.value); }});
+
+
+m=EZSlider(nil, 300@42,"  pitchShift ifnVerb  ", ControlSpec.new(0, 1.0, step:0.1));
+
+m.action_({ |ez| ~sampleLayerSynths.do { |synth| synth.set(\infVerb, ez.value); }});
 
 )
