@@ -1,17 +1,40 @@
 s.waitForBoot({
 
 	{
-		var myNode = "Orlando";
+		//var myNode = "Jacob";
+		//var peerNode = "Laura";
 
-		fork
-		{
+
+		fork{
 			p = P2PSC();
 			p.sync;
-			p.setName(myNode);
+			p.setName("Jacob");
 			p.sync;
+
+			p.addPath({ |msg|
+		var sleeptime = 1;
+				var freq =(msg[1]).asFloat;
+				var temp2 =(msg[2]).asFloat;
+
+
+		msg.postln; //print message for debugging
+
+		fork{
+			temp2.wait;
+
+		{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:sleeptime-0.01), doneAction:2)}.play;
+
+					p.sendMsg("/" ++ "Laura" ++ "/ping", freq, temp2);
+
 		}
 
+	},"/ping");
+
+		}
 	}.();
+
+
+
 
    // a sine oscillator node with one parameter
    //var x = {|freq=440| Out.ar(0, SinOsc.ar(freq))}.play;
@@ -21,8 +44,6 @@ s.waitForBoot({
 			var sig = SinOsc.ar(freq, 0, 0.2);
 			//Out.ar(0, Pan2.ar(sig, pan));
 		}).add;
-	}.();
-
 
 
 	{
@@ -53,7 +74,7 @@ s.waitForBoot({
 
 			[freq, temp2].postln; // Post frequency and temp2 values
 			{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:temp2-0.01), doneAction:2)}.play;
-			//p.sendMsg("/" ++ "Jayson" ++ "/ping", freq, temp2);
+			p.sendMsg("/" ++ "Laura" ++ "/ping", freq, temp2);
 		});
 
 		fixedx = 0.2;
@@ -82,6 +103,13 @@ s.waitForBoot({
 			Pen.stroke; // Stroke the horizontal lines
 		});
 	}.();
+
+
+
+
+
+
+
 
 
 
