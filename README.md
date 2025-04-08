@@ -4,9 +4,18 @@
 
 FOR COLDPLAY SAMPLE DOWNLOAD HERE AND PUT INTO A FOLDER CALLED STEMS
 
+CREATE A file called .gitignore in the root directory 
+
+at the top of the file add
+"stems/"
+
+and save
+
 CREATE A NEW FOLDER IN THE ROOT DIRECTORY (BIKES) CALLED "stems" 
 
 https://drive.google.com/file/d/1Mg5cEIpklRyML-NEq3iOywnxNZ6Avg0L/view?usp=share_link
+
+
 
 
 IMPORTANT - IF SCLANG IS NOT FOUND TYPE THIS source ~/.bash_profile (FOR MAC)
