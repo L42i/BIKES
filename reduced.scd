@@ -25,8 +25,6 @@ s.waitForBoot({
 
 
 
-
-
 	{
 		var columns, win, slider, temp, temp2, fixedx, userView;
 
