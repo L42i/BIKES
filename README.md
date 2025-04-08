@@ -1,5 +1,12 @@
 # BIKES
 
+
+
+FOR COLDPLAY SAMPLE DOWNLOAD HERE AND PUT INTO A FOLDER CALLED STEMS
+
+https://drive.google.com/file/d/1Mg5cEIpklRyML-NEq3iOywnxNZ6Avg0L/view?usp=share_link
+
+
 IMPORTANT - IF SCLANG IS NOT FOUND TYPE THIS source ~/.bash_profile (FOR MAC)
 
 

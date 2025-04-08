@@ -45,8 +45,6 @@ s.waitForBoot({
 			//Out.ar(0, Pan2.ar(sig, pan));
 		}).add;
 
-	}.();
-
 
 	{
 		var columns, win, slider, temp, temp2, fixedx, userView;
