@@ -4,7 +4,7 @@ s.waitForBoot({
 	}.();
 
 	{
-		~sampleLayerBuffer = Buffer.read(s, thisProcess.nowExecutingPath.dirname +/+ "stems/background.wav");
+		~sampleLayerBuffer = Buffer.read(s, thisProcess.nowExecutingPath.dirname +/+ "stems/background48000.wav");
 	}.();
 
 	{
