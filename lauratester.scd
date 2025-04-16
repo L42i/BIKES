@@ -30,7 +30,7 @@ s.waitForBoot({
 		columns = [0.25, 0.5, 0.75, 1];
 		win = Window("2D Slider + Controls", Rect(200, 200, 300, 400)).fullScreen;
 
-		slider = Slider2D(win, Rect(20, 20, 260, 260))
+		slider = Slider2D(win, Rect(40, 40, 520, 520))
 			.background_(Color.gray)
 			.action_({ |sld|
 				var freqIndex, freq;
@@ -74,7 +74,7 @@ s.waitForBoot({
 
 		volumeSlider = EZSlider(
 			parent: win,
-			bounds: Rect(20, 290, 260, 30),
+			bounds: Rect(610, 200, 400, 100),
 			label: "Volume",
 			controlSpec: ControlSpec(0, 1, \lin, 0.01, 0.1),
 			action: { |ez|
@@ -85,7 +85,7 @@ s.waitForBoot({
 
 		lpfSlider = EZSlider(
 			parent: win,
-			bounds: Rect(20, 330, 260, 30),
+			bounds: Rect(610, 400, 400, 100),
 			label: "LowPass",
 			controlSpec: ControlSpec(100, 20000, \exp, 1, 20000),
 			action: { |ez|
