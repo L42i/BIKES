@@ -1,6 +1,6 @@
 s.waitForBoot({
 	{
-		s.options.sampleRate = 44100;
+		s.options.sampleRate = 48000;
 	}.();
 
 	{
@@ -28,7 +28,7 @@ s.waitForBoot({
 		var columns, win, slider, temp, temp2, fixedx, userView, volumeSlider, lpfSlider;
 
 		columns = [0.25, 0.5, 0.75, 1];
-		win = Window("2D Slider + Controls", Rect(200, 200, 300, 400)).front;
+		win = Window("2D Slider + Controls", Rect(200, 200, 300, 400)).fullScreen;
 
 		slider = Slider2D(win, Rect(20, 20, 260, 260))
 			.background_(Color.gray)
