@@ -1,4 +1,7 @@
 s.waitForBoot({
+	{
+	s.options.sampleRate = 441000;
+	}.();
 
     {
         ~sampleLayerBuffer = Buffer.read(s, thisProcess.nowExecutingPath.dirname +/+ "stems/background.wav");
@@ -71,9 +74,9 @@ s.waitForBoot({
             });
 
         // Add EZSlider BELOW the Slider2D (new)
-        volumeSlider = EZSlider(
+		volumeSlider = EZSlider(
             parent: win,
-            bounds: Rect(20, 290, 260, 30), // Positioned below Slider2D (Y = 290)
+            bounds: Rect(100, 700, 700, 100), // Positioned below Slider2D (Y = 290)
             label: "Volume",
             controlSpec: ControlSpec(0, 1, \lin, 0.01, 0.1),
             action: { |ez|
@@ -83,16 +86,8 @@ s.waitForBoot({
         );
 
 		// Add EZSlider BELOW the Slider2D (new)
-        reverbSlider = EZSlider(
-            parent: win,
-            bounds: Rect(20, 600, 400, 30), // Positioned below Slider2D (Y = 290)
-            label: "Volume",
-            controlSpec: ControlSpec(0, 1, \lin, 0.01, 0.1),
-            action: { |ez|
-                ~sampleLayerSynths.do { |synth| synth.set(\volume, ez.value) };
-            },
-            labelWidth: 60
-        );
+
+
 
     }.();
 });
