@@ -1,3 +1,4 @@
+s.options.sampleRate = 44100;
 s.waitForBoot({
 
 
@@ -93,7 +94,9 @@ s.waitForBoot({
 			Pen.stroke; // Stroke the horizontal lines
 		});
 
-	}.();
+
+
+		}.();
 
 
 
