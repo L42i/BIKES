@@ -22,7 +22,7 @@
   - name: run sc script
     shell: |
       export DISPLAY=:0.0
-      sclang /home/student/Desktop/BIKES/lauratester.scd
+      sclang /home/student/Desktop/BIKES/link_tester.scd
     async: 2592000
     poll: 0
 
