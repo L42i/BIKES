@@ -105,27 +105,29 @@ s.sync;
 				Pen.stroke;
 			});
 
-		volumeSlider = EZSlider(
-			parent: win,
-			bounds: Rect(610, 200, 400, 100),
-			label: "Volume",
-			controlSpec: ControlSpec(0, 1, \lin, 0.01, 0.1),
-			action: { |ez|
-				~sampleLayerSynths.do { |synth| synth.set(\volume, ez.value) };
-			},
-			labelWidth: 60
-		);
-
 		lpfSlider = EZSlider(
 			parent: win,
 			bounds: Rect(610, 400, 400, 100),
-			label: "LowPass",
+			label: "Tempo",
 			controlSpec: ControlSpec(2, 10, \exp, 1, 1),
 			action: { |ez|
 				~shared_CLOCK.tempo = ez.value;
 			},
 			labelWidth: 60
 		);
+
+		volumeSlider = EZSlider(
+			parent: win,
+			bounds: Rect(610, 200, 400, 100),
+			label: "Latency",
+			controlSpec: ControlSpec(0, 0.5, \lin, 0.1, 0.1),
+			action: { |ez|
+				~shared_CLOCK.latency = ez.value;
+			},
+			labelWidth: 60
+		);
+
+
 	}.();
 
 });
