@@ -1,6 +1,33 @@
 s.waitForBoot({
 
-	~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "B_Drum_2_MONO.wav");
+	~kick = "";
+
+	thisProcess.nowExecutingPath.dirname.postln;
+
+
+
+	if(("hostname".unixCmdGetStdOut).contains("zs-MBP-6"))
+	{
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "one/Bass.wav");
+
+	};
+	if(("hostname".unixCmdGetStdOut).contains("student8"))
+	{
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "one/Kick.wav");
+	};
+	if(("hostname".unixCmdGetStdOut).contains("student10"))
+	{
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "one/Bass.wav");
+	};
+	if(("hostname".unixCmdGetStdOut).contains("student11"))
+	{
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "one/Percs.wav");
+	};
+	if(("hostname".unixCmdGetStdOut).contains("student12"))
+	{
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "one/Vocods.wav");
+	};
+
 
 		SynthDef( \simple_sample, {
 
