@@ -1,0 +1,30 @@
+---
+- name: Start fully connected Jacktrip Mesh
+  hosts: nodes
+  gather_facts: false
+  tasks:
+  # Kill any existing processes related to the mesh
+  - name: Kill all SuperCollider things
+    command: killall -9 sclang scsynth
+    ignore_errors: true
+  - name: Kill all JackTrip things
+    command: killall -9 jacktrip
+    ignore_errors: true
+  - name: Kill all qjacks
+    command: killall -9 qjackctl
+    ignore_errors: true
+  - name: Kill all jackd things
+    command: killall -9 jackd
+    ignore_errors: true
+
+
+
+  - name: run sc script
+    shell: |
+      export DISPLAY=:0.0
+      sclang /home/student/Desktop/BIKES/lauratester.scd
+    async: 2592000
+    poll: 0
+
+  vars:
+    base_port: 4464

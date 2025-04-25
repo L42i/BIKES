@@ -1,0 +1,12 @@
+---
+- name: Start fully connected Jacktrip Mesh
+  hosts: nodes
+  gather_facts: false
+
+  tasks:
+
+    - name: "Install BIKES repo"
+      shell: |
+        cd Desktop
+        git clone "https://github.com/L42i/BIKES"
+
