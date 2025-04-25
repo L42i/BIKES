@@ -8,24 +8,24 @@ s.waitForBoot({
 
 	if(("hostname".unixCmdGetStdOut).contains("zs-MBP-6"))
 	{
-		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "one/Bass.wav");
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "two/Bass.wav");
 
 	};
 	if(("hostname".unixCmdGetStdOut).contains("student8"))
 	{
-		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "one/Kick.wav");
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "two/Kick.wav");
 	};
 	if(("hostname".unixCmdGetStdOut).contains("student10"))
 	{
-		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "one/Bass.wav");
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "two/Bass.wav");
 	};
 	if(("hostname".unixCmdGetStdOut).contains("student11"))
 	{
-		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "one/Percs.wav");
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "two/Percs.wav");
 	};
 	if(("hostname".unixCmdGetStdOut).contains("student12"))
 	{
-		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "one/Vocods.wav");
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "two/GlitchPerc.wav");
 	};
 
 
@@ -70,19 +70,15 @@ s.sync;
 				Pseq([1,1,1,1,1,1,1,1],7),
 				Pseq([1,1,1,1,1,1,1,0],1),
 		], inf),
-		\gain, Pseq(
-			[
-				Pseq([1,1,1,1,1,1,1,1],7),
-				Pseq([1,1,1,1,1,1,1,0],1),
-		], inf),
+		\gain, 1,
 		\rate, 1,
 	).play(~shared_CLOCK,nil,4);
 
 
-	~shared_CLOCK.tempo = 2;
+	~shared_CLOCK.tempo = 9.5;
 
 
-	~shared_CLOCK.latency = -0.01;
+	~shared_CLOCK.latency = -0.00;
 
 	{
 		var columns, win, slider, temp, temp2, fixedx, userView, volumeSlider, lpfSlider;
@@ -136,9 +132,9 @@ s.sync;
 			parent: win,
 			bounds: Rect(610, 400, 400, 100),
 			label: "Tempo",
-			controlSpec: ControlSpec(2, 10, \exp, 1, 1),
+			controlSpec: ControlSpec(60, 300, \exp, 5, 5),
 			action: { |ez|
-				~shared_CLOCK.tempo = ez.value;
+				~shared_CLOCK.beats = ez.value;
 			},
 			labelWidth: 60
 		);
