@@ -8,24 +8,24 @@ s.waitForBoot({
 
 	if(("hostname".unixCmdGetStdOut).contains("zs-MBP-6"))
 	{
-		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "two/Bass.wav");
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "three/Bass.wav");
 
 	};
 	if(("hostname".unixCmdGetStdOut).contains("student8"))
 	{
-		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "two/Kick.wav");
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "three/Kick.wav");
 	};
 	if(("hostname".unixCmdGetStdOut).contains("student10"))
 	{
-		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "two/Bass.wav");
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "three/Bass.wav");
 	};
 	if(("hostname".unixCmdGetStdOut).contains("student11"))
 	{
-		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "two/Percs.wav");
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "three/VibePerc.wav");
 	};
 	if(("hostname".unixCmdGetStdOut).contains("student12"))
 	{
-		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "two/GlitchPerc.wav");
+		~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "three/VocoPerc.wav");
 	};
 
 
@@ -37,11 +37,14 @@ s.waitForBoot({
 			gain      = 1,
 			gate      = nil,
 			bufferNr  = 0,
-			startpos  = 0|
+			startpos  = 0,
+		    lpfFreq = 16000
+		|
 
 			var sig = PlayBuf.ar(1, bufferNr, rate * BufRateScale.kr(bufferNr), gate, startpos*BufFrames.kr(bufferNr));
+		    var filtered = LPF.ar(sig, lpfFreq);
 
-			Out.ar(out_bus, gain * sig);
+		Out.ar(out_bus, gain * filtered);
 
 		}).add;
 
@@ -75,7 +78,7 @@ s.sync;
 	).play(~shared_CLOCK,nil,4);
 
 
-	~shared_CLOCK.tempo = 9.5;
+	~shared_CLOCK.tempo = 5;
 
 
 	~shared_CLOCK.latency = -0.00;
@@ -132,9 +135,10 @@ s.sync;
 			parent: win,
 			bounds: Rect(610, 400, 400, 100),
 			label: "Tempo",
-			controlSpec: ControlSpec(60, 300, \exp, 5, 5),
+			controlSpec:  ControlSpec(100, 20000, \exp, 1, 20000),
 			action: { |ez|
-				~shared_CLOCK.beats = ez.value;
+
+				~tree_percussion_1.set(\lpfFreq, ez.value)
 			},
 			labelWidth: 60
 		);
@@ -143,9 +147,10 @@ s.sync;
 			parent: win,
 			bounds: Rect(610, 200, 400, 100),
 			label: "Latency",
-			controlSpec: ControlSpec(0, 0.5, \lin, 0.1, 0.1),
+			controlSpec: ControlSpec(0, 1, \lin, 0.1, 0.1),
 			action: { |ez|
 				~shared_CLOCK.latency = ez.value;
+
 			},
 			labelWidth: 60
 		);
