@@ -1,40 +1,42 @@
+s.waitForBoot({
 
-s.boot;
+	~kick = Buffer.read(s,thisProcess.nowExecutingPath.dirname +/+ "B_Drum_2_MONO.wav");
 
-~kick = Buffer.read(s,"/home/student/Desktop/B_Drum_2.wav");
+		SynthDef( \simple_sample, {
 
-(
-SynthDef( \simple_sample, {
+			|
+			out_bus   = 0,
+			rate      = 1,
+			gain      = 1,
+			gate      = nil,
+			bufferNr  = 0,
+			startpos  = 0|
 
-	|
-	out_bus   = 0,
-	rate      = 1,
-	gain      = 1,
-	gate      = nil,
-	bufferNr  = 0,
-	startpos  = 0|
+			var sig = PlayBuf.ar(1, bufferNr, rate * BufRateScale.kr(bufferNr), gate, startpos*BufFrames.kr(bufferNr));
 
-	var sig = PlayBuf.ar(1, bufferNr, rate * BufRateScale.kr(bufferNr), gate, startpos*BufFrames.kr(bufferNr));
+			Out.ar(out_bus, gain * sig);
 
-	Out.ar(out_bus, gain * sig);
+		}).add;
 
-}).add;
-)
-
+s.sync;
 
 		~tree_percussion_1 = Synth( \simple_sample,
 			[\bufferNr, ~kick.bufnum, \gain, 0], target: s
 		);
 
 
-Pbindef(\perc_1, \type, \set, \args, #[\gate, \gain] ,\id, ~tree_percussion_1);
+
+s.sync;
+
+	Pbindef(\perc_1, \type, \set, \args, #[\gate, \gain] ,\id, ~tree_percussion_1);
 
 
-~shared_CLOCK  = LinkClock(1).latency_(Server.default.latency);
+	~shared_CLOCK  = LinkClock(1).latency_(Server.default.latency);
 
 
 
-Pbindef(\perc_1,
+
+	Pbindef(\perc_1,
 		\dur, 1/4,
 		\gate, Pseq(
 			[
@@ -49,7 +51,17 @@ Pbindef(\perc_1,
 		\rate, 1,
 	).play(~shared_CLOCK,nil,4);
 
-~shared_CLOCK.tempo = 5
+
+	~shared_CLOCK.tempo = 5;
 
 
-~shared_CLOCK.latency = -0.01
+	~shared_CLOCK.latency = -0.01;
+
+});
+
+
+
+
+
+
+
