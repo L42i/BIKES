@@ -78,7 +78,7 @@ s.sync;
 	).play(~shared_CLOCK,nil,4);
 
 
-	~shared_CLOCK.tempo = 5;
+	~shared_CLOCK.tempo = 4.13;
 
 
 	~shared_CLOCK.latency = -0.00;
@@ -134,7 +134,7 @@ s.sync;
 		lpfSlider = EZSlider(
 			parent: win,
 			bounds: Rect(610, 400, 400, 100),
-			label: "Tempo",
+			label: "Low Pass",
 			controlSpec:  ControlSpec(100, 20000, \exp, 1, 20000),
 			action: { |ez|
 
