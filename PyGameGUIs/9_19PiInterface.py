@@ -8,7 +8,7 @@ osc_client = udp_client.SimpleUDPClient(ip, port)
 
 # --- Setup PyGame ---
 pygame.init()
-screen_size = (846, 457)
+screen_size = (1024, 570)
 screen = pygame.display.set_mode(screen_size)
 pygame.display.set_caption("Bitmap OSC Grid")
 
