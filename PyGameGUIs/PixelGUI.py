@@ -18,10 +18,10 @@ rows, cols = 8, 8
 cell_size = screen_size[0] // cols  # assume square window
 
 # Load images
-background = pygame.image.load("/Users/jacobwesterstahl/Downloads/Industrial2Pixel.jpeg").convert()
+background = pygame.image.load("Industrial2Pixel.jpeg").convert()
 background = pygame.transform.scale(background, screen_size)
 
-overlay = pygame.image.load("/Users/jacobwesterstahl/Downloads/Industrial2.jpeg").convert()
+overlay = pygame.image.load("Industrial2.jpeg").convert()
 overlay = pygame.transform.scale(overlay, screen_size)
 
 # Track active swaps: dictionary {(grid_x, grid_y): end_time}
