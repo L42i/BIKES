@@ -1,0 +1,13 @@
+---
+- name: Start fully connected Jacktrip Mesh
+  hosts: nodes
+  gather_facts: false
+
+  tasks:
+
+    - name: "Install BIKES repo"
+      shell: |
+        cd Desktop
+        cd BIKES
+        git pull
+
