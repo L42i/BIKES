@@ -27,10 +27,10 @@ cell_h = screen_size[1] // rows  # 190
 
 # Load images
 base = os.path.dirname(os.path.abspath(__file__))
-background = pygame.image.load(os.path.join(base,"/Users/jacobwesterstahl/Downloads/igpostjan26/DSC03498.JPG")).convert()
+background = pygame.image.load(os.path.join(base, "media/images/" + soundscape + "Pixel.jpg")).convert()
 background = pygame.transform.scale(background, screen_size)
 
-overlay = pygame.image.load(os.path.join(base, "/Users/jacobwesterstahl/Downloads/igpostjan26/DSC03498.JPG")).convert()
+overlay = pygame.image.load(os.path.join(base, "media/images/" + soundscape + ".jpg")).convert()
 overlay = pygame.transform.scale(overlay, screen_size)
 
 # Track active swaps: dict {(gx, gy): end_time}
