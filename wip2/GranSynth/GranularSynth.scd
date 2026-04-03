@@ -6,14 +6,15 @@ s.meter;
 s.plotTree;
 s.scope;
 );
+
 //Couldn't get relative path to work so just edit this for wherever the file is on your machine
-b = Buffer.read(s, "/Users/jacobwesterstahl/Desktop/GranSynth/Additive Squish 2.wav", channels:[0]);
+b = Buffer.read(s, "/Users/jacobwesterstahl/Documents/GitHub/BIKES/wip2/GranSynth/Additive Squish 2.wav", channels:[0]);
 b.play;
 
 //Signal.hanningWindow(1024).plot
 
 b.numChannels;
-//b.free;
+b.free;
 
 FreqScope.new;
 
@@ -23,7 +24,7 @@ FreqScope.new;
 
 s.waitForBoot({
 	// Load a sample buffer (replace with your own path)
-	b = Buffer.read(s,"/Users/jacobwesterstahl/Desktop/GranSynth/Additive Squish 2.wav"); //Platform.resourceDir +/+
+	b = Buffer.read(s,"/Users/jacobwesterstahl/Documents/GitHub/BIKES/wip2/GranSynth/Additive Squish 2.wav"); //Platform.resourceDir +/+
 
 	// Create control busses
 	~freqBus = Bus.control(s, 1).set(440);
