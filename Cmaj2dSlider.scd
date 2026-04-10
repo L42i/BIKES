@@ -61,7 +61,6 @@ slider = Slider2D(win, Rect(20, 20, 260, 260)).background_(Color.gray).action_({
 	);
 
 	[freq, temp2].postln; // Post frequency and temp2 values
-	p.sendMsg("/" ++ "Orlando" ++ "/ping", freq, temp2);
 });
 
 fixedx = 0.2;
