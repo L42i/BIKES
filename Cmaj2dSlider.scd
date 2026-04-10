@@ -29,7 +29,7 @@ x.free;
 fork{
 	p = P2PSC();
 	p.sync;
-	p.setName("Jacob");
+	p.setName("Laura");
 	p.sync;
 }
 )
@@ -167,7 +167,7 @@ fork {
 
 		{SinOsc.ar(freq:freq)*0.5*EnvGen.kr(Env.perc(releaseTime:sleeptime-0.01), doneAction:2)}.play;
 
-			p.sendMsg("/" ++ "Orlando" ++ "/ping", freq, time);
+			p.sendMsg("/" ++ "Jacob" ++ "/ping", freq, time);
 
 		}
 
@@ -196,7 +196,7 @@ fork {
     peers = p.getPeers();
     if (peers.size > 0,
         {
-				peer = peers[2];
+				peer = peers[1];
 				("Sending initial ping to:"+peer).postln;
 			("/"++"Jacob"++"/ping").postln;
 
