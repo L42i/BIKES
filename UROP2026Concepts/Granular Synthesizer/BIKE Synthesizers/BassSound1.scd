@@ -48,7 +48,7 @@ s.waitForBoot({
     activeSynths = Array.newClear(128);
 
     // --- Keyboard Window ---
-    win = Window("Sticky Granular Piano", Rect(200, 400, 550, 150)).front;
+    win = Window("Sticky Granular Bass", Rect(200, 400, 550, 150)).front;
     win.view.decorator = FlowLayout(win.view.bounds, 10@10, 5@5);
 
     notes.do({ |midi|

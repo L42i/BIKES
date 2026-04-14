@@ -14,7 +14,7 @@ s.waitForBoot({
     var currentDur = 0.4;
     var currentPos = 0.1;
 
-    b = Buffer.readChannel(s, "/Users/lauracall-gomez/Desktop/BIKES/UROP2026Concepts/Granular Synthesizer/Audio Files/AtmosphericC2.wav", channels: [0]); // LOAD FILEPATH
+    b = Buffer.readChannel(s, "/Users/lauracall-gomez/Desktop/BIKES/UROP2026Concepts/Granular Synthesizer/Audio Files/PadSoundC4.wav", channels: [0]); // LOAD FILEPATH
 
     SynthDef.new(\gs, {
         arg sync=0, dens=60, dur=0.4, durRand=0.5, durHz=0.3, buf=0,
@@ -42,13 +42,13 @@ s.waitForBoot({
 
     s.sync;
 
-    rootNote = 36;
-    notes = (36..48);
+    rootNote = 60;
+    notes = (60..72);
     noteNames = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     activeSynths = Array.newClear(128);
 
     // --- Keyboard Window ---
-    win = Window("Sticky Granular Atmospheric Pad", Rect(200, 400, 550, 150)).front;
+    win = Window("Sticky Granular Soft Pad", Rect(200, 400, 550, 150)).front;
     win.view.decorator = FlowLayout(win.view.bounds, 10@10, 5@5);
 
     notes.do({ |midi|
