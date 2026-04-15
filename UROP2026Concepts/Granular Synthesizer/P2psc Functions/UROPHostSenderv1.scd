@@ -75,7 +75,7 @@ s.waitForBoot({
         var degree  = msg[3];
 
         // A. Play locally immediately
-        { ~playNote.value(root, scale, degree) }.defer;
+        if(degree.asInteger > 0) { ~playNote.value(root, scale, degree) } { if(~activeSynth.notNil) { ~activeSynth.release } };
 
         // B. Send via Hybrid Direct Routing
         if(p.notNil) {
@@ -85,6 +85,8 @@ s.waitForBoot({
                         // Use P2PSC's discovered name to send a direct ping!
                         NetAddr(peerName.asString, 57121).sendMsg("/remoteChord", root, scale, degree);
 						NetAddr(peerName.asString, 57120).sendMsg("/remoteChord", root, scale, degree);
+
+
                     };
                 };
             };

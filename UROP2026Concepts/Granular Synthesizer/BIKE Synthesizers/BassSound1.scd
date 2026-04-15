@@ -6,15 +6,22 @@ s.options.numInputBusChannels = 0;
 
 (
 s.waitForBoot({
-    var notes, rootNote, win, win2, noteNames, activeSynths;
+    var path, notes, rootNote, win, win2, noteNames, activeSynths;
     var dens_Dial, dur_Dial, pos_Dial, size=64;
-
-    // Variables to track current state for new notes
     var currentDens = 60;
     var currentDur = 0.4;
     var currentPos = 0.1;
 
-    b = Buffer.readChannel(s, "/Users/lauracall-gomez/Desktop/BIKES/UROP2026Concepts/Granular Synthesizer/Audio Files/BassSoundC1.wav", channels: [0]); // LOAD FILEPATH
+    // 2. Resolve Relative Path dynamically
+    // .dirname gets the script's folder (\BIKE Synthesizers)
+    // chaining .dirname again goes up one level (\Granular Synthesizer)
+    ~absolutePrefix = thisProcess.nowExecutingPath.dirname.dirname;
+
+    // 3. Construct the clean absolute path using +/+ for OS-agnostic slashes
+    path = ~absolutePrefix +/+ "Audio Files" +/+ "BassSoundC1.wav";
+
+    // 4. Load the file
+    b = Buffer.readChannel(s, path, channels: [0]);
 
     SynthDef.new(\gs, {
         arg sync=0, dens=60, dur=0.4, durRand=0.5, durHz=0.3, buf=0,

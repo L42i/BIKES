@@ -6,16 +6,24 @@ s.options.numInputBusChannels = 0;
 
 (
 s.waitForBoot({
-    var notes, rootNote, win, win2, noteNames, activeSynths;
+    var path, notes, rootNote, win, win2, noteNames, activeSynths;
     var dens_Dial, dur_Dial, pos_Dial, size=64;
-
-    // Variables to track current state for new notes
     var currentDens = 60;
     var currentDur = 0.4;
     var currentPos = 0.1;
 
-    b = Buffer.readChannel(s, "/Users/lauracall-gomez/Desktop/BIKES/UROP2026Concepts/Granular Synthesizer/Audio Files/AtmosphericC2.wav", channels: [0]); // LOAD FILEPATH
+    // 2. Resolve Relative Path dynamically
+    // .dirname gets the script's folder (\BIKE Synthesizers)
+    // chaining .dirname again goes up one level (\Granular Synthesizer)
+    ~absolutePrefix = thisProcess.nowExecutingPath.dirname.dirname;
 
+    // 3. Construct the clean absolute path using +/+ for OS-agnostic slashes
+    path = ~absolutePrefix +/+ "Audio Files" +/+ "AtmosphericC2.wav";
+
+    // 4. Load the file
+    b = Buffer.readChannel(s, path, channels: [0]);
+
+    // ... Continues into your SynthDef ...
     SynthDef.new(\gs, {
         arg sync=0, dens=60, dur=0.4, durRand=0.5, durHz=0.3, buf=0,
         rate=1, pos=0.1, posSpeed=0.1, posRand=0.05,
@@ -24,7 +32,7 @@ s.waitForBoot({
 
         var sig, env, trigger, durCtrl, posCtrl, panCtrl;
 
-        env = EnvGen.ar(Env.asr(atk, 1, rel), gate, doneAction: 2);
+		env = EnvGen.ar(Env.asr(atk, 1, rel), gate, doneAction: 2);
 
         trigger = Select.ar(sync, [Dust.ar(dens ! 2), Impulse.ar(dens ! 2)]);
         durCtrl = dur * LFNoise1.kr(durHz ! 2).exprange(1 - durRand, 1 + durRand);
@@ -110,5 +118,6 @@ s.waitForBoot({
     pos_Dial.value = currentPos.linlin(0.0, 1.0, 0, 1);
 
     win.onClose = { activeSynths.do(_.set(\gate, 0)); win2.close; };
-});
+}
 )
+);
