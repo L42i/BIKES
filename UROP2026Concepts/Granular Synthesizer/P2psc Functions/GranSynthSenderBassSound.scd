@@ -121,7 +121,9 @@ s.waitForBoot({
         if(degree.asInteger > 0) {
             { ~playNote.value(root, scale, degree) }.defer;
         } {
-            if(~activeSynth.notNil) { ~activeSynth.set(\gate, 0) } // Uses \gate instead of release for Granular Env
+            if(~activeSynth.notNil) { ~activeSynth.set(\gate, 0) }; // Uses \gate instead of release for Granular Env
+			~activeSynth = nil; //
+
         };
 
         // B. Send via Hybrid Direct Routing
