@@ -49,6 +49,7 @@ pygame.init()
 W, H = 900, 640
 screen = pygame.display.set_mode((W, H))
 pygame.display.set_caption("Chord Grid — Host")
+pygame.mouse.set_visible(False)
 clock    = pygame.time.Clock()
 
 font_roman   = pygame.font.SysFont("Arial", 18, bold=True)

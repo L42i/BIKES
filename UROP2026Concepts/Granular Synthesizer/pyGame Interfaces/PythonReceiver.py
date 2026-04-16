@@ -55,6 +55,7 @@ pygame.init()
 W, H = 900, 640
 screen = pygame.display.set_mode((W, H))
 pygame.display.set_caption("Voice Pad — Receiver")
+pygame.mouse.set_visible(False)
 clock = pygame.time.Clock()
 
 font_func  = pygame.font.SysFont("Arial", 16, bold=True)
